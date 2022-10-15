@@ -3,6 +3,7 @@ from pygame.locals import *
 import sys
 import time
 import random
+import os
 
 
 class Game:
@@ -25,10 +26,10 @@ class Game:
         self.RESULT_C = (255, 70, 70)
 
         pygame.init()
-        self.open_img = pygame.image.load('type-speed-open.png')
+        self.open_img = pygame.image.load(os.path.join(sys.path[0], 'type-speed-open.png'), "r")
         self.open_img = pygame.transform.scale(self.open_img, (self.w, self.h))
 
-        self.bg = pygame.image.load('background.jpg')
+        self.bg = pygame.image.load(os.path.join(sys.path[0], 'background.jpg'), "r" )
         self.bg = pygame.transform.scale(self.bg, (500, 750))
 
         self.screen = pygame.display.set_mode((self.w, self.h))
