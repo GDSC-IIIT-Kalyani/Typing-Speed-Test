@@ -3,6 +3,7 @@ from pygame.locals import *
 import sys
 import time
 import random
+import os
 
 
 class Game:
@@ -25,10 +26,10 @@ class Game:
         self.RESULT_C = (255, 70, 70)
 
         pygame.init()
-        self.open_img = pygame.image.load('type-speed-open.png')
+        self.open_img = pygame.image.load(os.path.join(sys.path[0], 'type-speed-open.png'), "r")
         self.open_img = pygame.transform.scale(self.open_img, (self.w, self.h))
 
-        self.bg = pygame.image.load('background.jpg')
+        self.bg = pygame.image.load(os.path.join(sys.path[0], 'background.jpg'), "r" )
         self.bg = pygame.transform.scale(self.bg, (500, 750))
 
         self.screen = pygame.display.set_mode((self.w, self.h))
@@ -42,7 +43,7 @@ class Game:
         pygame.display.update()
 
     def get_sentence(self):
-        f = open('sentences.txt').read()
+        f = open(os.path.join(sys.path[0], 'sentences.txt'), "r").read()
         sentences = f.split('\n')
         sentence = random.choice(sentences)
         return sentence
@@ -71,7 +72,7 @@ class Game:
                 round(self.accuracy)) + "%" + ' Wpm: ' + str(round(self.wpm))
 
             # draw icon image
-            self.time_img = pygame.image.load('icon.png')
+            self.time_img = pygame.image.load(os.path.join(sys.path[0], 'icon.png'), "r")
             self.time_img = pygame.transform.scale(self.time_img, (150, 150))
             #screen.blit(self.time_img, (80,320))
             screen.blit(self.time_img, (self.w/2-75, self.h-140))
