@@ -43,7 +43,7 @@ class Game:
         pygame.display.update()
 
     def get_sentence(self):
-        f = open('sentences.txt').read()
+        f = open(os.path.join(sys.path[0], 'sentences.txt'), "r").read()
         sentences = f.split('\n')
         sentence = random.choice(sentences)
         return sentence
@@ -72,7 +72,7 @@ class Game:
                 round(self.accuracy)) + "%" + ' Wpm: ' + str(round(self.wpm))
 
             # draw icon image
-            self.time_img = pygame.image.load('icon.png')
+            self.time_img = pygame.image.load(os.path.join(sys.path[0], 'icon.png'), "r")
             self.time_img = pygame.transform.scale(self.time_img, (150, 150))
             #screen.blit(self.time_img, (80,320))
             screen.blit(self.time_img, (self.w/2-75, self.h-140))
